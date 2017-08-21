@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="@dimen/activity_padding"
+    android:weightSum="1"
+    tools:context="br.com.yasin.contatordejogos.MainActivity">
+
+    <android.support.design.widget.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <EditText
+            android:id="@+id/et_pontuacao"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:hint="@string/score"
+            android:inputType="number" />
+    </android.support.design.widget.TextInputLayout>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingTop="@dimen/activity_padding">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/numero_de_jogadores" />
+
+        <com.shawnlin.numberpicker.NumberPicker
+            android:id="@+id/np_jogadores_picker"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            app:np_dividerColor="@color/primaryColor"
+            app:np_max="5"
+            app:np_min="1"
+            app:np_orientation="horizontal"
+            app:np_selectedTextColor="@color/primaryColor"
+            app:np_selectedTextSize="18sp"
+            app:np_textColor="@color/primaryColor"
+            app:np_textSize="14sp"
+            app:np_value="0" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingTop="@dimen/activity_padding"
+        android:orientation="vertical">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/iniciais_jogadores" />
+
+        <EditText
+            android:id="@+id/et_jogador1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:maxLength="3"/>
+
+        <EditText
+            android:id="@+id/et_jogador2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:visibility="invisible"
+            android:maxLength="3"/>
+
+        <EditText
+            android:id="@+id/et_jogador3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:visibility="invisible"
+            android:maxLength="3"/>
+
+        <EditText
+            android:id="@+id/et_jogador4"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:visibility="invisible"
+            android:maxLength="3"/>
+
+        <EditText
+            android:id="@+id/et_jogador5"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:visibility="invisible"
+            android:maxLength="3"/>
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/bt_iniciar"
+        style="@style/Widget.AppCompat.Button.Colored"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/bt_height"
+        android:text="@string/iniciar_jogo"
+        android:textColor="@color/secondaryTextColor" />
+
+</LinearLayout>
