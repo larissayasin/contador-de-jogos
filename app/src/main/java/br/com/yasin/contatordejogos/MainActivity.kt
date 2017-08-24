@@ -1,6 +1,7 @@
 package br.com.yasin.contatordejogos
 
 import android.os.Bundle
+import android.support.design.widget.TextInputLayout
 import android.support.v7.app.AppCompatActivity
 import android.view.View
 import android.widget.Button
@@ -12,6 +13,7 @@ import org.jetbrains.anko.startActivity
 class MainActivity : AppCompatActivity() {
 
     val pontuacao: EditText by bindView(R.id.et_pontuacao)
+    val tilPontuacao: TextInputLayout by bindView(R.id.til_pontuacao)
     val iniciar: Button by bindView(R.id.bt_iniciar)
     val numJogadores: NumberPicker by bindView(R.id.np_jogadores_picker)
     val j1: EditText by bindView(R.id.et_jogador1)
@@ -25,15 +27,31 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         iniciar.setOnClickListener {
-            var nomes = ArrayList<String>()
-            if(j1.text.toString() != "") nomes.add(j1.text.toString())
-            if(j2.text.toString() != "") nomes.add(j2.text.toString())
-            if(j3.text.toString() != "") nomes.add(j3.text.toString())
-            if(j4.text.toString() != "") nomes.add(j4.text.toString())
-            if(j5.text.toString() != "") nomes.add(j5.text.toString())
+            val jogadores = ArrayList<Jogador>()
+            if(1 <= numJogadores.value)
+                jogadores.add(Jogador(j1.text.toString()))
+            if(2 <= numJogadores.value)
+                jogadores.add(Jogador(j2.text.toString()))
+            if(3 <= numJogadores.value)
+                jogadores.add(Jogador(j3.text.toString()))
+            if(4 <= numJogadores.value)
+                jogadores.add(Jogador(j4.text.toString()))
+            if(5 <= numJogadores.value)
+                jogadores.add(Jogador(j5.text.toString()))
 
-            startActivity<ResultActivity>(BundleEnum.NUM_JOGADORES.name to numJogadores.value, BundleEnum.SCORE.name to pontuacao.text)
 
+//            if(j1.text.toString() != "") jogadores.add(Jogador(j1.text.toString()))
+//            if(j2.text.toString() != "") jogadores.add(Jogador(j2.text.toString()))
+//            if(j3.text.toString() != "") jogadores.add(Jogador(j3.text.toString()))
+//            if(j4.text.toString() != "") jogadores.add(Jogador(j4.text.toString()))
+//            if(j5.text.toString() != "") jogadores.add(Jogador(j5.text.toString()))
+
+            if(pontuacao.text.toString() == ""){
+                tilPontuacao.error = "Campo deve ser preenchido"
+                return@setOnClickListener
+            }
+          //  startActivity<ScoreActivity>(BundleEnum.NUM_JOGADORES.name to numJogadores.value, BundleEnum.SCORE.name to pontuacao.text.toString(), BundleEnum.JOGADORES.name to jogadores)
+            startActivity<ScoreActivity>( "players" to jogadores)
         }
 
         numJogadores.setOnValueChangedListener { picker, oldVal, newVal ->
@@ -77,6 +95,4 @@ class MainActivity : AppCompatActivity() {
         }
 
     }
-
-
 }
